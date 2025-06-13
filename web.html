@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArkMC - A survival server</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the Inter font and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e3a8a; /* Dark blue */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #60a5fa; /* Lighter blue */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6; /* Even lighter blue on hover */
+        }
+        /* Custom class for blur effect on sticky header */
+        .backdrop-blur-custom {
+            backdrop-filter: saturate(180%) blur(10px);
+            -webkit-backdrop-filter: saturate(180%) blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-blue-900 text-white">
+
+    <!-- Sticky Header (Navigation Bar) -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-blue-900 bg-opacity-70 backdrop-blur-custom shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Server Logo -->
+            <a href="#hero" class="flex items-center space-x-2 text-2xl font-bold text-white">
+                <svg class="h-8 w-8 text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7 4a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span>ArkMC</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#description" class="text-white hover:text-blue-300 transition duration-300 font-medium">Description</a>
+                <a href="#screenshots" class="text-white hover:text-blue-300 transition duration-300 font-medium">Screenshots</a>
+                <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
+                <a href="#access" class="text-white hover:text-blue-300 transition duration-300 font-medium">Access</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-800 bg-opacity-90 py-4">
+            <a href="#description" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Description</a>
+            <a href="#screenshots" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Screenshots</a>
+            <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
+            <a href="#access" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Access</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Section 1: Full-screen Header -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-blue-900 to-indigo-900">
+            <!-- Background Image -->
+            <img src="bg.png" alt="ArkMC Server Screenshot" class="absolute inset-0 w-full h-full object-cover opacity-100">
+            
+            <div class="relative z-10 p-6 sm:p-10 bg-black bg-opacity-40 rounded-xl shadow-2xl max-w-4xl mx-auto border-4 border-blue-600 animate-fade-in">
+                <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-white drop-shadow-lg">
+                    Welcome to <span class="text-blue-400">ArkMC</span>
+                </h1>
+                <p class="text-xl sm:text-2xl text-blue-100 mb-8 font-light max-w-2xl mx-auto">
+                    Minecrafts first survival server being ran on a Rasbperry Pi!
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <button onclick="copyToClipboard('arkmc.minecraft.party', 'Java IP')"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
+                        Copy Java IP
+                    </button>
+                    <button onclick="copyToClipboard('match-de.gl.at.ply.gg:2398', 'Bedrock IP & Port')"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
+                        Copy Bedrock IP & Port
+                    </button>
+                </div>
+            </div>
+            <!-- Message Box for copy status -->
+            <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        </section>
+
+        <!-- Section 2: Description of the Server -->
+        <section id="description" class="py-16 bg-blue-800 text-center px-4">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-4xl font-bold mb-8 text-blue-200">About ArkMC</h2>
+                <p class="text-lg leading-relaxed mb-6 text-blue-100">
+                    ArkMC Is a simple Minecraft Survival server that is a Whitelist Only server, to get acsess, see more about that in the Acsess Section of this website, our server has a bunch of great members, and cool Plugins making your minecraft expereance even better. Its really simple though, just a minecraft survival server.
+                </p>
+                <p class="text-lg leading-relaxed text-blue-100">
+                    We do have some rules around here, ESPESALY No griefing! I will be soon install a plugin to stop that from happening, but for now please do not grief, No lag machines, because this is being ran on a rasbperry pi 5 8GB, it cant handel much except for normal gameplay. See the rest of the rules inside of the servers spawn.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Screenshots of the Server -->
+        <section id="screenshots" class="py-16 bg-blue-900 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12 text-blue-200">Explore ArkMC Through Screenshots</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="spawn.png" alt="Screenshot 1: Custom Biome" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <p class="text-md text-blue-100 font-medium text-center">Where you spawn, build your base!</p>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="farm.png" alt="Screenshot 2: Player Builds" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <p class="text-md text-blue-100 font-medium text-center">Farm, built by HexyMC, FARM FARM FARM FARM FARM</p>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="sunrise.png" alt="Screenshot 3: Community Hub" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <p class="text-md text-blue-100 font-medium text-center">Amazing sunrise, using SuperDuperVanilla shaders.</p>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="netherhib.png" alt="Screenshot 4: Unique Events" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <p class="text-md text-blue-100 font-medium text-center">Nether hub, goes to spawn, stronghold, and my and hexymc's house.</p>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                        <img src="zw.png" alt="Screenshot 5: Resource World" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <p class="text-md text-blue-100 font-medium text-center">Cherrywood Paradise, built by Arc360</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: IP and Port Details (Larger Text) -->
+        <section id="ip-details" class="py-16 bg-blue-800 px-4 text-center">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now! If you have access.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                        <h3 class="text-3xl font-semibold mb-4 text-blue-100">Java Edition</h3>
+                        <p class="text-5xl font-extrabold text-blue-300 break-words">arkmc.minecraft.party</p>
+                        <button onclick="copyToClipboard('arkmc.minecraft.party', 'Java IP')"
+                                class="mt-6 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            Copy Java IP
+                        </button>
+                    </div>
+                    <div class="bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                        <h3 class="text-3xl font-semibold mb-4 text-blue-100">Bedrock Edition</h3>
+                        <p class="text-5xl font-extrabold text-blue-300 break-words">match-de.gl.at.ply.gg</p>
+                        <p class="text-4xl font-extrabold text-blue-400 mb-4">Port: 2398</p>
+                        <button onclick="copyToClipboard('match-de.gl.at.ply.gg:2398', 'Bedrock IP & Port')"
+                                class="mt-6 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
+                            Copy Bedrock IP & Port
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: How to Get Access -->
+        <section id="access" class="py-16 bg-blue-900 px-4 text-center">
+            <div class="container mx-auto max-w-3xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                <h2 class="text-4xl font-bold mb-8 text-blue-200">How to Get Access</h2>
+                <p class="text-lg leading-relaxed mb-6 text-blue-100">
+                    ArkMC operates on a whitelisted system to ensure a high-quality, friendly, and secure community experience. To gain access, please follow the steps below:
+                </p>
+                <ol class="list-decimal list-inside text-left text-lg text-blue-100 space-y-3 mb-8 px-4 sm:px-8">
+                    <li>Join our official Discord server by clicking the button below.</li>
+                    <li>Read the rules and guidelines in the #arkmc-rules channel.</li>
+                    <li>Chat in the server for at least a week and ask for mc server access from the @Arc360 user on the Discord Server.</li>
+                    <li>If I Feel your fit for the server, I will ask for your java and or bedrock usernames, and add you to the whitelist.</li>
+                </ol>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="https://discord.gg/TRMPdA8acF" target="_blank" rel="noopener noreferrer"
+                       class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.244 3.036c-1.391-.914-2.891-1.636-4.473-2.146l-.504-.151-.013-.004c-1.127-.373-2.316-.566-3.535-.565-.001 0-.002 0-.003 0-.001 0-.002 0-.003 0-1.219-.001-2.408.192-3.535.565l-.013.004-.504.151c-1.582.51-3.082 1.232-4.473 2.146C.767 5.253 0 8.016 0 10.74c0 6.643 5.438 12.016 12.145 12.016 6.551 0 11.855-5.269 11.855-11.758 0-2.724-.767-5.487-2.756-7.704zm-4.321 4.544l-.794-.007c-.161-.001-.321.002-.482.008-.431.018-.853.078-1.261.178-.291.072-.569.172-.835.29-.462.203-.89.444-1.285.727-.261.186-.511.386-.749.595-.121.107-.243.213-.365.319l-.317.275c-.381.332-.718.665-.965.986-.188.243-.367.487-.533.722-.164.237-.315.467-.452.686-.142.23-.263.456-.356.671-.097.227-.156.452-.178.674-.022.222-.008.436.046.647.054.21.144.41.268.595.124.184.275.357.452.513.177.155.385.293.621.41.236.117.498.21.785.279.288.069.595.11.92.122.325.012.665.002 1.005-.028.67-.06 1.32-.196 1.942-.405.347-.116.685-.255 1.008-.415.323-.16.634-.337.925-.533.407-.278.784-.582 1.127-.912.285-.285.541-.588.766-.906.216-.3.402-.62.557-.962.14-.306.25-.631.327-.978.077-.346.113-.703.109-1.06-.004-.356-.046-.708-.124-1.05-.078-.343-.19-.67-.333-.974-.144-.305-.32-.589-.527-.852-.207-.263-.44-.5-.694-.71-.25-.213-.52-.408-.804-.582-.284-.175-.584-.326-.89-.452zm-6.208 4.296c-.636 0-1.151.492-1.151 1.099s.515 1.099 1.151 1.099c.636 0 1.151-.492 1.151-1.099s-.515-1.099-1.151-1.099zm4.721 0c-.636 0-1.151.492-1.151 1.099s.515 1.099 1.151 1.099c.636 0 1.151-.492 1.151-1.099s-.515-1.099-1.151-1.099z"/>
+                        </svg>
+                        Join Our Discord
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-950 py-10 px-4 text-center">
+        <div class="container mx-auto">
+            <!-- Footer Logo -->
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <svg class="h-10 w-10 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7 4a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-3xl font-extrabold text-white">ArkMC</span>
+            </div>
+
+            <!-- Footer Links -->
+            <div class="flex flex-wrap justify-center gap-6 mb-8 text-blue-200">
+                <a href="#hero" class="hover:text-blue-400 transition duration-300">Home</a>
+                <a href="#description" class="hover:text-blue-400 transition duration-300">About</a>
+                <a href="#screenshots" class="hover:text-blue-400 transition duration-300">Gallery</a>
+                <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Contact</a>
+                <a href="#access" class="hover:text-blue-400 transition duration-300">Community</a>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-blue-300 text-sm">&copy; 2025 ArkMC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Function to copy text to clipboard and show a message
+        function copyToClipboard(text, type) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const messageBox = document.getElementById('message-box');
+            messageBox.textContent = `${type} copied!`;
+            messageBox.classList.remove('opacity-0');
+            messageBox.classList.add('opacity-100');
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                messageBox.classList.remove('opacity-100');
+                messageBox.classList.add('opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
