@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArkMC - A survival server</title>
+    <title>ArkMC - Your Ultimate Minecraft Server</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
@@ -53,6 +53,7 @@
                 <a href="#description" class="text-white hover:text-blue-300 transition duration-300 font-medium">Description</a>
                 <a href="#screenshots" class="text-white hover:text-blue-300 transition duration-300 font-medium">Screenshots</a>
                 <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
+                <a href="#griefing-protection" class="text-white hover:text-blue-300 transition duration-300 font-medium">Protection</a>
                 <a href="#access" class="text-white hover:text-blue-300 transition duration-300 font-medium">Access</a>
             </div>
 
@@ -71,6 +72,7 @@
             <a href="#description" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Description</a>
             <a href="#screenshots" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Screenshots</a>
             <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
+            <a href="#griefing-protection" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Protection</a>
             <a href="#access" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Access</a>
         </div>
     </nav>
@@ -85,9 +87,13 @@
                 <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-white drop-shadow-lg">
                     Welcome to <span class="text-blue-400">ArkMC</span>
                 </h1>
-                <p class="text-xl sm:text-2xl text-blue-100 mb-8 font-light max-w-2xl mx-auto">
+                <p class="text-xl sm:text-2xl text-blue-100 mb-4 font-light max-w-2xl mx-auto">
                     Minecrafts first survival server being ran on a Rasbperry Pi!
                 </p>
+                <!-- Player Counter Display -->
+                <div id="player-count" class="text-3xl sm:text-4xl font-bold mb-8 text-green-400">
+                    Loading players...
+                </div>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <button onclick="copyToClipboard('arkmc.minecraft.party', 'Java IP')"
                             class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
@@ -108,10 +114,10 @@
             <div class="container mx-auto max-w-3xl">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">About ArkMC</h2>
                 <p class="text-lg leading-relaxed mb-6 text-blue-100">
-                    ArkMC Is a simple Minecraft Survival server that is a Whitelist Only server, to get acsess, see more about that in the Acsess Section of this website, our server has a bunch of great members, and cool Plugins making your minecraft expereance even better. Its really simple though, just a minecraft survival server.
+                    ArkMC Is a simple Minecraft Survival server, our server has a bunch of great members, and cool Plugins making your minecraft expereance even better. Its really simple though, just a minecraft survival server.
                 </p>
                 <p class="text-lg leading-relaxed text-blue-100">
-                    We do have some rules around here, ESPESALY No griefing! I will be soon install a plugin to stop that from happening, but for now please do not grief, No lag machines, because this is being ran on a rasbperry pi 5 8GB, it cant handel much except for normal gameplay. See the rest of the rules inside of the servers spawn.
+                    We do have some rules around here, ESPESALY No griefing! I have installed a plugin to combat this so please read up on the instructions on how to set that up, No lag machines, because this is being ran on a rasbperry pi 5 8GB, it cant handel much except for normal gameplay. See the rest of the rules inside of the servers spawn.
                 </p>
             </div>
         </section>
@@ -148,7 +154,7 @@
         <!-- Section 4: IP and Port Details (Larger Text) -->
         <section id="ip-details" class="py-16 bg-blue-800 px-4 text-center">
             <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now! If you have access.</h2>
+                <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now!</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                         <h3 class="text-3xl font-semibold mb-4 text-blue-100">Java Edition</h3>
@@ -171,19 +177,42 @@
             </div>
         </section>
 
+        <!-- New Section: How to stop your base from getting griefed -->
+        <section id="griefing-protection" class="py-16 bg-blue-900 px-4">
+            <div class="container mx-auto max-w-5xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600 flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="md:w-1/2 text-left">
+                    <h2 class="text-4xl font-bold mb-6 text-blue-200">How to Stop Your Base from Getting</h2>
+                    <p class="text-lg leading-relaxed mb-6 text-blue-100">
+                        Protecting your creations is crucial on any survival server. While ArkMC has rules against griefing, taking proactive steps ensures your base remains safe and secure. Follow these simple steps to claim your land and prevent unwanted destruction!
+                    </p>
+                    <ol class="list-decimal list-inside text-lg text-blue-100 space-y-3 mb-6">
+                        <li>Acquire a Golden Shovel: Craft or find a golden shovel in the game. This is your primary tool for land claiming.</li>
+                        <li>Right-Click a Block: With the golden shovel in hand, right-click on one corner of the area you wish to protect. This marks the first point of your claim.</li>
+                        <li>Right-Click Another Block: Move to the diagonally opposite corner of the area you want to claim and right-click with the golden shovel again. This marks the second point, completing your claim.</li>
+                        <li>Verify Your Claim: A message will appear confirming your claim and showing you the number of blocks claimed. You can also see the claim boundaries.</li>
+                        <li>Expand or Resize (Optional): To expand your claim, simply right-click outside your current claim with the golden shovel. To resize, right-click inside.</li>
+                        <li>Trust Players (Optional): To allow friends to build in your claimed area, use the command `/trust [playername]`.</li>
+                        <li>Untrust Players (Optional): To remove a player's building permissions, use the command `/untrust [playername]`.</li>
+                    </ol>
+                    <p class="text-lg leading-relaxed text-blue-100">
+                        If you need more claimed blocks to claim a bigger area, ask me on the Discord Server.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <!-- Placeholder for GIF -->
+                    <img src="tut.gif" alt="GIF showing griefing protection steps" class="w-full max-w-md h-auto rounded-lg shadow-2xl border-2 border-blue-600">
+                </div>
+            </div>
+        </section>
+
         <!-- Section 5: How to Get Access -->
         <section id="access" class="py-16 bg-blue-900 px-4 text-center">
             <div class="container mx-auto max-w-3xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">How to Get Access</h2>
                 <p class="text-lg leading-relaxed mb-6 text-blue-100">
-                    ArkMC operates on a whitelisted system to ensure a high-quality, friendly, and secure community experience. To gain access, please follow the steps below:
+                    ArkMC No longer relies on a whitelist system due to me adding a non griefing plugin to the server. So anyone can join and play! If you have any issues whith the plugin or any other issues whiht the server, contact me on our discord!
                 </p>
-                <ol class="list-decimal list-inside text-left text-lg text-blue-100 space-y-3 mb-8 px-4 sm:px-8">
-                    <li>Join our official Discord server by clicking the button below.</li>
-                    <li>Read the rules and guidelines in the #arkmc-rules channel.</li>
-                    <li>Chat in the server for at least a week and ask for mc server access from the @Arc360 user on the Discord Server.</li>
-                    <li>If I Feel your fit for the server, I will ask for your java and or bedrock usernames, and add you to the whitelist.</li>
-                </ol>
+
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <a href="https://discord.gg/TRMPdA8acF" target="_blank" rel="noopener noreferrer"
                        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
@@ -213,7 +242,8 @@
                 <a href="#hero" class="hover:text-blue-400 transition duration-300">Home</a>
                 <a href="#description" class="hover:text-blue-400 transition duration-300">About</a>
                 <a href="#screenshots" class="hover:text-blue-400 transition duration-300">Gallery</a>
-                <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Contact</a>
+                <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Connect</a>
+                <a href="#griefing-protection" class="hover:text-blue-400 transition duration-300">Protection</a>
                 <a href="#access" class="hover:text-blue-400 transition duration-300">Community</a>
             </div>
 
@@ -260,6 +290,54 @@
                 messageBox.classList.add('opacity-0');
             }, 3000);
         }
+
+        // Function to fetch and display player count
+        async function fetchPlayerCount() {
+            const serverIp = 'arkmc.minecraft.party';
+            const apiUrl = `https://api.mcsrvstat.us/2/${serverIp}`;
+            const maxPlayers = 20; // As requested, set your maximum player limit here
+
+            const playerCountElement = document.getElementById('player-count');
+            if (!playerCountElement) {
+                console.error("Player count element not found. Make sure you've added the HTML div with id='player-count'.");
+                return;
+            }
+
+            // Set initial loading state
+            playerCountElement.innerHTML = `Loading players...`;
+            playerCountElement.classList.remove('text-red-400', 'text-green-400'); // Clear previous colors
+            playerCountElement.classList.add('text-blue-200'); // Neutral loading color
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.online) {
+                    const onlinePlayers = data.players.online;
+                    playerCountElement.innerHTML = `${onlinePlayers} / ${maxPlayers} Players Online`;
+                    playerCountElement.classList.remove('text-red-400', 'text-blue-200');
+                    playerCountElement.classList.add('text-green-400'); // Green for online
+                } else {
+                    playerCountElement.innerHTML = `Server Offline or Data Unavailable`;
+                    playerCountElement.classList.remove('text-green-400', 'text-blue-200');
+                    playerCountElement.classList.add('text-red-400'); // Red for offline/error
+                }
+            } catch (error) {
+                console.error("Error fetching player count:", error);
+                playerCountElement.innerHTML = `Failed to load player count`;
+                playerCountElement.classList.remove('text-green-400', 'text-blue-200');
+                playerCountElement.classList.add('text-red-400'); // Red for error
+            }
+        }
+
+        // Call the function to fetch player count when the page loads
+        document.addEventListener('DOMContentLoaded', fetchPlayerCount);
+
+        // Refresh the player count every 30 seconds
+        setInterval(fetchPlayerCount, 30000); // 30000 milliseconds = 30 seconds
     </script>
 </body>
 </html>
