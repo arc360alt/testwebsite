@@ -102,6 +102,11 @@
                             class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
                         Copy Bedrock IP & Port
                     </button>
+                    <!-- New "View Map" button -->
+                    <a href="https://map.arc360hub.com" target="_blank" rel="noopener noreferrer"
+                       class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
+                        View Map
+                    </a>
                 </div>
             </div>
             <!-- Message Box for copy status -->
@@ -127,7 +132,7 @@
                 <h2 class="text-4xl font-bold text-center mb-12 text-blue-200">Explore ArkMC Through Screenshots</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
-                        <img src="spawn.png" alt="Screenshot 1: Custom Biome" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
+                        <img src="spawn.png" alt="Screenshot 1: Custom BiBome" class="w-full h-auto rounded-lg mb-4 border-2 border-blue-600">
                         <p class="text-md text-blue-100 font-medium text-center">Where you spawn, build your base!</p>
                     </div>
                     <div class="bg-blue-800 p-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
@@ -187,13 +192,13 @@
                         Protecting your creations is crucial on any survival server. While ArkMC has rules against griefing, taking proactive steps ensures your base remains safe and secure. Follow these simple steps to claim your land and prevent unwanted destruction!
                     </p>
                     <ol class="list-decimal list-inside text-lg text-blue-100 space-y-3 mb-6">
-                        <li>**Acquire a Golden Shovel:** Craft or find a golden shovel in the game. This is your primary tool for land claiming.</li>
-                        <li>**Right-Click a Block:** With the golden shovel in hand, right-click on one corner of the area you wish to protect. This marks the first point of your claim.</li>
-                        <li>**Right-Click Another Block:** Move to the diagonally opposite corner of the area you want to claim and right-click with the golden shovel again. This marks the second point, completing your claim.</li>
-                        <li>**Verify Your Claim:** A message will appear confirming your claim and showing you the number of blocks claimed. You can also see the claim boundaries.</li>
-                        <li>**Expand or Resize (Optional):** To expand your claim, simply right-click outside your current claim with the golden shovel. To resize, right-click inside.</li>
-                        <li>**Trust Players (Optional):** To allow friends to build in your claimed area, use the command `/trust [playername]`.</li>
-                        <li>**Untrust Players (Optional):** To remove a player's building permissions, use the command `/untrust [playername]`.</li>
+                        <li>Acquire a Golden Shovel: Craft or find a golden shovel in the game. This is your primary tool for land claiming.</li>
+                        <li>Right-Click a Block: With the golden shovel in hand, right-click on one corner of the area you wish to protect. This marks the first point of your claim.</li>
+                        <li>Right-Click Another Block: Move to the diagonally opposite corner of the area you want to claim and right-click with the golden shovel again. This marks the second point, completing your claim.</li>
+                        <li>Verify Your Claim: A message will appear confirming your claim and showing you the number of blocks claimed. You can also see the claim boundaries.</li>
+                        <li>Expand or Resize (Optional): To expand your claim, simply right-click outside your current claim with the golden shovel. To resize, right-click inside.</li>
+                        <li>Trust Players (Optional): To allow friends to build in your claimed area, use the command `/trust [playername]`.</li>
+                        <li>Untrust Players (Optional): To remove a player's building permissions, use the command `/untrust [playername]`.</li>
                     </ol>
                     <p class="text-lg leading-relaxed text-blue-100">
                         If you need more claimed blocks to claim a bigger area, ask me on the Discord Server.
@@ -321,7 +326,7 @@
                     playerCountElement.classList.remove('text-red-400', 'text-blue-200');
                     playerCountElement.classList.add('text-green-400'); // Green for online
                 } else {
-                    playerCountElement.innerHTML = `Server Offline or Data Unavailable`;
+                    playerCountElement.innerHTML = `Server Offline`;
                     playerCountElement.classList.remove('text-green-400', 'text-blue-200');
                     playerCountElement.classList.add('text-red-400'); // Red for offline/error
                 }
