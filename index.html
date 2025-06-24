@@ -33,12 +33,25 @@
             backdrop-filter: saturate(180%) blur(10px);
             -webkit-backdrop-filter: saturate(180%) blur(10px);
         }
+        /* Ensure content is not hidden by the sticky banner and nav */
+        body {
+            padding-top: 5rem; /* Adjust based on banner and nav height */
+        }
+        /* Adjust nav position to be below the new banner */
+        nav {
+            top: 2.5rem; /* Height of the banner */
+        }
     </style>
 </head>
 <body class="bg-blue-900 text-white">
 
+    <!-- Downtime Banner -->
+    <div class="fixed top-0 left-0 w-full bg-red-700 text-white text-center py-2 z-50 shadow-lg">
+        ArkMC is going to be down for the next few weeks due to 1.21.6 errors and bugs, current date of writing is 6-23-25
+    </div>
+
     <!-- Sticky Header (Navigation Bar) -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-blue-900 bg-opacity-70 backdrop-blur-custom shadow-lg">
+    <nav class="fixed left-0 w-full z-50 bg-blue-900 bg-opacity-70 backdrop-blur-custom shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <!-- Server Logo -->
             <a href="#hero" class="flex items-center space-x-2 text-2xl font-bold text-white">
