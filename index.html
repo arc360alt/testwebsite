@@ -340,13 +340,15 @@
             playerCountElement.className = 'text-3xl sm:text-4xl font-bold mb-8 text-blue-200'; // Neutral loading color
 
             try {
-                // Using mcsrvstat.us as a public API proxy for Minecraft status
-                const response = await fetch(`https://api.mcsrvstat.us/2/${MINECRAFT_SERVER_IP}`);
+                // *** CHANGED: Using api.mcstatus.io for more accurate/less cached status ***
+                const response = await fetch(`https://api.mcstatus.io/v2/status/java/${MINECRAFT_SERVER_IP}`);
                 const data = await response.json();
 
                 if (response.ok && data.online) {
                     const onlinePlayers = data.players ? data.players.online : 0;
-                    playerCountElement.innerHTML = `${onlinePlayers} / ${MAX_PLAYERS} Players Online`;
+                    // Note: api.mcstatus.io provides data.players.max, so we can use that if available
+                    const maxPlayers = data.players ? data.players.max : MAX_PLAYERS; // Use API's max if available, else fallback
+                    playerCountElement.innerHTML = `${onlinePlayers} / ${maxPlayers} Players Online`;
                     playerCountElement.className = 'text-3xl sm:text-4xl font-bold mb-8 text-green-400'; // Green for online
                 } else {
                     playerCountElement.innerHTML = `Server Offline`;
@@ -396,12 +398,13 @@
         // Call functions when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             fetchMinecraftStatus(); // Initial call for Minecraft status
-            fetchServerMetrics();   // Initial call for system metrics
+            fetchServerMetrics();    // Initial call for system metrics
         });
 
         // Set intervals for refreshing data
-        setInterval(fetchMinecraftStatus, 5000); // Refresh Minecraft status every 30 seconds
-        setInterval(fetchServerMetrics, 30000);   // Refresh system metrics every 30 seconds
+        // Increased refresh rate for Minecraft status to 5 seconds
+        setInterval(fetchMinecraftStatus, 5000); // Refresh Minecraft status every 5 seconds
+        setInterval(fetchServerMetrics, 30000);    // Refresh system metrics every 30 seconds
     </script>
 </body>
 </html>
