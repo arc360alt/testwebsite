@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArkMC - A Survival Server</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom styles for the Inter font and smooth scrolling */
@@ -37,30 +35,21 @@
 </head>
 <body class="bg-blue-900 text-white">
 
-    <!-- Downtime Banner -->
-<!--     <div class="fixed top-0 left-0 w-full bg-red-700 text-white text-center py-2 z-50 shadow-lg">
-        ArkMC 1.21.6 support is currently being worked on, waiting for gyzerMC and a few other plugin support.
-    </div>
-  -->
-    <!-- Sticky Header (Navigation Bar) -->
     <nav class="fixed left-0 w-full z-50 bg-blue-900 bg-opacity-70 backdrop-blur-custom shadow-lg">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Server Logo -->
             <a href="#hero" class="flex items-center space-x-2 text-2xl font-bold text-white">
                 <img src="logo.png" alt="ArkMC Logo" class="h-8 w-8">
                 <span>ArkMC</span>
             </a>
 
-            <!-- Navigation Links -->
             <div class="hidden md:flex space-x-8">
                 <a href="#description" class="text-white hover:text-blue-300 transition duration-300 font-medium">Description</a>
                 <a href="#screenshots" class="text-white hover:text-blue-300 transition duration-300 font-medium">Screenshots</a>
-                <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
+                <a href="#server-stats" class="text-white hover:text-blue-300 transition duration-300 font-medium">Server Stats</a> <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
                 <a href="#griefing-protection" class="text-white hover:text-blue-300 transition duration-300 font-medium">Protection</a>
                 <a href="#access" class="text-white hover:text-blue-300 transition duration-300 font-medium">Access</a>
             </div>
 
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -70,23 +59,19 @@
             </div>
         </div>
 
-        <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-blue-800 bg-opacity-90 py-4">
             <a href="#description" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Description</a>
             <a href="#screenshots" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Screenshots</a>
-            <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
+            <a href="#server-stats" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Server Stats</a> <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
             <a href="#griefing-protection" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Protection</a>
             <a href="#access" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Access</a>
         </div>
     </nav>
 
     <main>
-        <!-- Section 1: Full-screen Header -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-gradient-to-br from-blue-900 to-indigo-900">
-            <!-- Background Image -->
             <img src="bg.png" alt="ArkMC Server Screenshot" class="absolute inset-0 w-full h-full object-cover opacity-100">
             
-            <!-- Added backdrop-blur-custom class here -->
             <div class="relative z-10 p-6 sm:p-10 bg-black bg-opacity-40 rounded-xl shadow-2xl max-w-4xl mx-auto border-4 border-blue-600 animate-fade-in backdrop-blur-custom">
                 <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-white drop-shadow-lg">
                     Welcome to <span class="text-blue-400">ArkMC</span>
@@ -94,7 +79,6 @@
                 <p class="text-xl sm:text-2xl text-blue-100 mb-4 font-light max-w-2xl mx-auto">
                     Minecrafts first survival server being ran on a Rasbperry Pi!
                 </p>
-                <!-- Player Counter Display -->
                 <div id="player-count" class="text-3xl sm:text-4xl font-bold mb-8 text-green-400">
                     Loading players...
                 </div>
@@ -107,18 +91,15 @@
                             class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
                         Copy Bedrock IP & Port
                     </button>
-                    <!-- New "View Map" button -->
                     <a href="https://map.arc360hub.com" target="_blank" rel="noopener noreferrer"
                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
                         View Map
                     </a>
                 </div>
             </div>
-            <!-- Message Box for copy status -->
             <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"></div>
         </section>
 
-        <!-- Section 2: Description of the Server -->
         <section id="description" class="py-16 bg-blue-800 text-center px-4">
             <div class="container mx-auto max-w-3xl">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">About ArkMC</h2>
@@ -131,7 +112,6 @@
             </div>
         </section>
 
-        <!-- Section 3: Screenshots of the Server -->
         <section id="screenshots" class="py-16 bg-blue-900 px-4">
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold text-center mb-12 text-blue-200">Explore ArkMC Through Screenshots</h2>
@@ -164,7 +144,29 @@
             </div>
         </section>
 
-        <!-- Section 4: IP and Port Details (Larger Text) -->
+
+
+        <section id="server-stats" class="py-16 bg-blue-800 px-4 text-center">
+            <div class="container mx-auto max-w-4xl bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                <h2 class="text-4xl font-bold mb-6 text-blue-200">Server Performance</h2>
+                <div class="flex flex-col items-center justify-center space-y-4">
+                    <p class="text-5xl font-extrabold text-blue-300 break-words" id="serverHostname">Loading Hostname...</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 w-full max-w-md">
+                        <div class="text-left">
+                            <h3 class="text-3xl font-semibold mb-2 text-blue-100">CPU Usage</h3>
+                            <p class="text-4xl font-extrabold text-blue-400" id="cpuUsage">--%</p>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-3xl font-semibold mb-2 text-blue-100">RAM Usage</h3>
+                            <p class="text-4xl font-extrabold text-blue-400" id="ramUsage">--%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
         <section id="ip-details" class="py-16 bg-blue-800 px-4 text-center">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now!</h2>
@@ -192,7 +194,6 @@
             </div>
         </section>
 
-        <!-- New Section: How to stop your base from getting griefed -->
         <section id="griefing-protection" class="py-16 bg-blue-900 px-4">
             <div class="container mx-auto max-w-5xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600 flex flex-col md:flex-row items-center md:items-start gap-8">
                 <div class="md:w-1/2 text-left">
@@ -214,13 +215,11 @@
                     </p>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <!-- Placeholder for GIF -->
                     <img src="https://media.githubusercontent.com/media/arc360alt/testwebsite/main/tut.gif" alt="GIF showing griefing protection steps" class="w-full max-w-md h-auto rounded-lg shadow-2xl border-2 border-blue-600">
                 </div>
             </div>
         </section>
 
-        <!-- Section 5: How to Get Access -->
         <section id="access" class="py-16 bg-blue-900 px-4 text-center">
             <div class="container mx-auto max-w-3xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">How to Get Access</h2>
@@ -241,27 +240,23 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-blue-950 py-10 px-4 text-center">
         <div class="container mx-auto">
-            <!-- Footer Logo -->
             <div class="flex items-center justify-center space-x-3 mb-6">
                 <img src="logo.png" alt="ArkMC Logo" class="h-10 w-10">
                 <span class="text-3xl font-extrabold text-white">ArkMC</span>
             </div>
 
-            <!-- Footer Links -->
             <div class="flex flex-wrap justify-center gap-6 mb-8 text-blue-200">
                 <a href="#hero" class="hover:text-blue-400 transition duration-300">Home</a>
                 <a href="#description" class="hover:text-blue-400 transition duration-300">About</a>
                 <a href="#screenshots" class="hover:text-blue-400 transition duration-300">Gallery</a>
-                <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Connect</a>
+                <a href="#server-stats" class="hover:text-blue-400 transition duration-300">Server Stats</a> <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Connect</a>
                 <a href="#griefing-protection" class="hover:text-blue-400 transition duration-300">Protection</a>
                 <a href="#access" class="hover:text-blue-400 transition duration-300">Community</a>
                 <a href="https://github.com/arc360alt/testwebsite/tree/main" class="hover:text-blue-400 transition duration-300">Website Source</a>
             </div>
 
-            <!-- Copyright -->
             <p class="text-blue-300 text-sm">&copy; 2025 ArkMC. All rights reserved.</p>
         </div>
     </footer>
@@ -347,11 +342,55 @@
             }
         }
 
-        // Call the function to fetch player count when the page loads
-        document.addEventListener('DOMContentLoaded', fetchPlayerCount);
+        // New function to fetch and display server stats
+        async function fetchServerStats() {
+            // !! IMPORTANT: Replace this with your actual Cloudflare Tunnel URL for metrics !!
+            const statsBaseUrl = 'https://stats.arc360hub.com/metrics';
+
+            const hostnameElement = document.getElementById('serverHostname');
+            const cpuElement = document.getElementById('cpuUsage');
+            const ramElement = document.getElementById('ramUsage');
+
+            // Set initial loading states
+            if (hostnameElement) hostnameElement.textContent = 'Loading Hostname...';
+            if (cpuElement) cpuElement.textContent = '--%';
+            if (ramElement) ramElement.textContent = '--%';
+
+            try {
+                const [hostnameResponse, cpuResponse, ramResponse] = await Promise.all([
+                    fetch(`${statsBaseUrl}/hostname`),
+                    fetch(`${statsBaseUrl}/cpu`),
+                    fetch(`${statsBaseUrl}/ram`)
+                ]);
+
+                const hostnameData = await hostnameResponse.json();
+                const cpuData = await cpuResponse.json();
+                const ramData = await ramResponse.json();
+
+                if (hostnameElement) hostnameElement.textContent = hostnameData.hostname || 'N/A';
+                if (cpuElement) cpuElement.textContent = `${cpuData.cpu_usage ? cpuData.cpu_usage.toFixed(2) : 'N/A'}%`;
+                if (ramElement) ramElement.textContent = `${ramData.ram_usage ? ramData.ram_usage.toFixed(2) : 'N/A'}%`;
+
+            } catch (error) {
+                console.error('Error fetching server metrics:', error);
+                if (hostnameElement) hostnameElement.textContent = 'Error';
+                if (cpuElement) cpuElement.textContent = 'Error%';
+                if (ramElement) ramElement.textContent = 'Error%';
+            }
+        }
+
+
+        // Call functions when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchPlayerCount();
+            fetchServerStats(); // Fetch server stats on load
+        });
 
         // Refresh the player count every 30 seconds
         setInterval(fetchPlayerCount, 30000); // 30000 milliseconds = 30 seconds
+
+        // Refresh the server stats every 5 seconds
+        setInterval(fetchServerStats, 30000); // 30000 milliseconds = 30 seconds
     </script>
 </body>
 </html>
