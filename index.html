@@ -31,6 +31,21 @@
             backdrop-filter: saturate(180%) blur(10px);
             -webkit-backdrop-filter: saturate(180%) blur(10px);
         }
+        /* Specific styles for alternating section backgrounds for mobile and desktop */
+        section:nth-of-type(odd):not(#hero) {
+            background-color: #1e3a8a; /* Dark Blue for odd sections */
+        }
+        section:nth-of-type(even):not(#hero) {
+            background-color: #254497; /* A slightly different dark blue for even sections */
+        }
+        /* Ensuring text alignment on smaller screens for all sections */
+        section > .container {
+            text-align: center; /* Default for all sections, can be overridden by inner elements if needed */
+        }
+        /* Specific adjustment for server-stats grid alignment on smaller screens */
+        #server-stats .grid {
+            justify-items: center; /* Center grid items horizontally */
+        }
     </style>
 </head>
 <body class="bg-blue-900 text-white">
@@ -100,7 +115,7 @@
             <div id="message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none"></div>
         </section>
 
-        <section id="description" class="py-16 bg-blue-800 text-center px-4">
+        <section id="description" class="py-16 px-4">
             <div class="container mx-auto max-w-3xl">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">About ArkMC</h2>
                 <p class="text-lg leading-relaxed mb-6 text-blue-100">
@@ -112,7 +127,7 @@
             </div>
         </section>
 
-        <section id="screenshots" class="py-16 bg-blue-900 px-4">
+        <section id="screenshots" class="py-16 px-4">
             <div class="container mx-auto">
                 <h2 class="text-4xl font-bold text-center mb-12 text-blue-200">Explore ArkMC Through Screenshots</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -144,14 +159,12 @@
             </div>
         </section>
 
-
-
-        <section id="server-stats" class="py-16 bg-blue-800 px-4 text-center">
+        <section id="server-stats" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-4xl bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                 <h2 class="text-4xl font-bold mb-6 text-blue-200">Server Performance</h2>
                 <div class="flex flex-col items-center justify-center space-y-4">
                     <p class="text-5xl font-extrabold text-blue-300 break-words" id="serverHostname">Loading Hostname...</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 w-full max-w-md">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 w-full max-w-lg">
                         <div class="text-center md:text-left">
                             <h3 class="text-3xl font-semibold mb-2 text-blue-100">CPU Usage</h3>
                             <p class="text-4xl font-extrabold text-blue-400" id="cpuUsage">--%</p>
@@ -160,14 +173,16 @@
                             <h3 class="text-3xl font-semibold mb-2 text-blue-100">RAM Usage</h3>
                             <p class="text-4xl font-extrabold text-blue-400" id="ramUsage">--%</p>
                         </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-3xl font-semibold mb-2 text-blue-100">CPU Temp</h3>
+                            <p class="text-4xl font-extrabold text-blue-400" id="cpuTemperature">--°C</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
-
-        <section id="ip-details" class="py-16 bg-blue-900 px-4 text-center">
+        <section id="ip-details" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now!</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -194,7 +209,7 @@
             </div>
         </section>
 
-        <section id="griefing-protection" class="py-16 bg-blue-800 px-4">
+        <section id="griefing-protection" class="py-16 px-4">
             <div class="container mx-auto max-w-5xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600 flex flex-col md:flex-row items-center md:items-start gap-8">
                 <div class="md:w-1/2 text-center md:text-left">
                     <h2 class="text-4xl font-bold mb-6 text-blue-200">How to Stop Your Base from Getting Griefed</h2>
@@ -220,7 +235,7 @@
             </div>
         </section>
 
-        <section id="access" class="py-16 bg-blue-900 px-4 text-center">
+        <section id="access" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-3xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">How to Get Access</h2>
                 <p class="text-lg leading-relaxed mb-6 text-blue-100">
@@ -342,43 +357,43 @@
             }
         }
 
-        // New function to fetch and display server stats
+        // Function to fetch and display server stats (now including CPU Temp)
         async function fetchServerStats() {
-            // !! IMPORTANT: Replace this with your actual Cloudflare Tunnel URL for metrics !!
-            const statsBaseUrl = 'https://stats.arc360hub.com/metrics';
+            // !! IMPORTANT: Replace this with your actual Cloudflare Tunnel URL or Raspberry Pi IP:Port for metrics !!
+            // This URL should point to the /metrics/all endpoint of your Python Flask app.
+            const statsApiUrl = 'https://stats.arc360hub.com/metrics/all'; // Updated to fetch all metrics from one endpoint
 
             const hostnameElement = document.getElementById('serverHostname');
             const cpuElement = document.getElementById('cpuUsage');
             const ramElement = document.getElementById('ramUsage');
+            const cpuTempElement = document.getElementById('cpuTemperature'); // Get the new element
 
             // Set initial loading states
             if (hostnameElement) hostnameElement.textContent = 'Loading Hostname...';
             if (cpuElement) cpuElement.textContent = '--%';
             if (ramElement) ramElement.textContent = '--%';
+            if (cpuTempElement) cpuTempElement.textContent = '--°C'; // Initial state for temp
 
             try {
-                const [hostnameResponse, cpuResponse, ramResponse] = await Promise.all([
-                    fetch(`${statsBaseUrl}/hostname`),
-                    fetch(`${statsBaseUrl}/cpu`),
-                    fetch(`${statsBaseUrl}/ram`)
-                ]);
+                const response = await fetch(statsApiUrl); // Make a single fetch request
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json(); // Parse the single JSON response
 
-                const hostnameData = await hostnameResponse.json();
-                const cpuData = await cpuResponse.json();
-                const ramData = await ramResponse.json();
-
-                if (hostnameElement) hostnameElement.textContent = hostnameData.hostname || 'N/A';
-                if (cpuElement) cpuElement.textContent = `${cpuData.cpu_usage ? cpuData.cpu_usage.toFixed(2) : 'N/A'}%`;
-                if (ramElement) ramElement.textContent = `${ramData.ram_usage ? ramData.ram_usage.toFixed(2) : 'N/A'}%`;
+                if (hostnameElement) hostnameElement.textContent = data.hostname || 'N/A';
+                if (cpuElement) cpuElement.textContent = `${data.cpu_usage !== undefined ? data.cpu_usage.toFixed(2) : 'N/A'}%`;
+                if (ramElement) ramElement.textContent = `${data.ram_usage !== undefined ? data.ram_usage.toFixed(2) : 'N/A'}%`;
+                if (cpuTempElement) cpuTempElement.textContent = `${data.cpu_temperature !== undefined ? data.cpu_temperature.toFixed(1) : 'N/A'}°C`;
 
             } catch (error) {
                 console.error('Error fetching server metrics:', error);
                 if (hostnameElement) hostnameElement.textContent = 'Error';
                 if (cpuElement) cpuElement.textContent = 'Error%';
                 if (ramElement) ramElement.textContent = 'Error%';
+                if (cpuTempElement) cpuTempElement.textContent = 'Error°C';
             }
         }
-
 
         // Call functions when the page loads
         document.addEventListener('DOMContentLoaded', () => {
@@ -389,7 +404,7 @@
         // Refresh the player count every 30 seconds
         setInterval(fetchPlayerCount, 30000); // 30000 milliseconds = 30 seconds
 
-        // Refresh the server stats every 5 seconds
+        // Refresh the server stats every 30 seconds (adjust as needed)
         setInterval(fetchServerStats, 30000); // 30000 milliseconds = 30 seconds
     </script>
 </body>
