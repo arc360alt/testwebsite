@@ -47,6 +47,11 @@
         #server-stats .grid {
             justify-items: center; /* Center grid items horizontally */
         }
+        /* Styling for command text */
+        .command-text {
+            color: #60a5fa; /* Lighter blue for commands */
+            font-weight: 600; /* Semi-bold */
+        }
     </style>
 </head>
 <body class="bg-blue-900 text-white">
@@ -60,6 +65,7 @@
 
             <div class="hidden md:flex space-x-8">
                 <a href="#description" class="text-white hover:text-blue-300 transition duration-300 font-medium">Description</a>
+                <a href="#server-commands" class="text-white hover:text-blue-300 transition duration-300 font-medium">Server Commands</a>
                 <a href="#screenshots" class="text-white hover:text-blue-300 transition duration-300 font-medium">Screenshots</a>
                 <a href="#server-stats" class="text-white hover:text-blue-300 transition duration-300 font-medium">Server Stats</a>
                 <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
@@ -78,6 +84,7 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-blue-800 bg-opacity-90 py-4">
             <a href="#description" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Description</a>
+            <a href="#server-commands" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Server Commands</a>
             <a href="#screenshots" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Screenshots</a>
             <a href="#server-stats" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Server Stats</a>
             <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
@@ -129,6 +136,31 @@
                 </p>
             </div>
         </section>
+
+
+        <section id="server-commands" class="py-16 px-4">
+            <div class="container mx-auto max-w-3xl">
+                <h2 class="text-4xl font-bold mb-8 text-blue-200">Server Commands</h2>
+                <div class="bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                    <ul class="text-lg leading-relaxed text-blue-100 space-y-4 text-left">
+                        <li><span class="command-text">/spawn</span> - Teleports you to the server spawn point.</li>
+                        <li><span class="command-text">/home</span> - Teleports you to your set home.</li>
+                        <li><span class="command-text">/sethome</span> - Sets your current location as your home.</li>
+                        <li><span class="command-text">/warp [warpname]</span> - Warps you to a set location on the map.</li>
+                        <li><span class="command-text">/tpa [playername]</span> - Sends a teleport request to another player.</li>
+                        <li><span class="command-text">/tpaccept & /tpadeny</span> - Accepts / denys a pending teleport request.</li>
+                        <li><span class="command-text">/enderchest</span> - Lets you access your ender chest from anywhere.</li>
+                        <li><span class="command-text">/ghastpark & /ghastunpark</span> - Parks and unparks the nearest happy ghast.</li>
+                        <li><span class="command-text">/rtp</span> - Teleports you to a random location in the wilderness (random teleport).</li>
+                        <li><span class="command-text">/helpbc</span> - More ArkMC Commands.</li>
+                    </ul>
+                    <p class="text-md leading-relaxed mt-8 text-blue-200">
+                        These are the ArkMC exclusive commands, added via a plugin I coded. More commands and detailed usage can be found in-game or by asking in the Discord server.
+                    </p>
+                </div>
+            </div>
+        </section>
+
 
         <section id="screenshots" class="py-16 px-4">
             <div class="container mx-auto">
@@ -268,6 +300,7 @@
             <div class="flex flex-wrap justify-center gap-6 mb-8 text-blue-200">
                 <a href="#hero" class="hover:text-blue-400 transition duration-300">Home</a>
                 <a href="#description" class="hover:text-blue-400 transition duration-300">About</a>
+                <a href="#server-commands" class="hover:text-blue-400 transition duration-300">Commands</a>
                 <a href="#screenshots" class="hover:text-blue-400 transition duration-300">Gallery</a>
                 <a href="#server-stats" class="hover:text-blue-400 transition duration-300">Server Stats</a>
                 <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Connect</a>
@@ -323,7 +356,7 @@
         // Your Minecraft Server IP or Domain (for player count)
         const MINECRAFT_SERVER_IP = 'arkmc.minecraft.party'; // This is what you already have
         // Max players for display (customize this based on your server's capacity)
-        const MAX_PLAYERS = 20; 
+        const MAX_PLAYERS = 20;
         
         // YOUR FLASK METRICS SERVER IP & PORT (for CPU, RAM, Temp)
         // !! IMPORTANT: Replace this with your actual Cloudflare Tunnel URL or Raspberry Pi IP:Port for metrics !!
