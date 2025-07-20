@@ -52,6 +52,22 @@
             color: #60a5fa; /* Lighter blue for commands */
             font-weight: 600; /* Semi-bold */
         }
+        /* Styling for code blocks in the griefing section */
+        .code-block {
+            background-color: #2a52a3; /* A slightly lighter blue for the background */
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.9em;
+            color: #e0f2fe; /* Light blue text for commands */
+            white-space: nowrap; /* Prevents wrapping of code */
+        }
+        /* Styling for the griefing GIF */
+        .griefing-gif {
+            width: 100%; /* Ensure it uses full width available */
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Ensure the entire content of the GIF is visible, scaled to fit */
+        }
     </style>
 </head>
 <body class="bg-blue-900 text-white">
@@ -108,14 +124,11 @@
                     Loading players...
                 </div>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                    <button onclick="copyToClipboard('arkmc.minecraft.party', 'Java IP')"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
-                        Copy Java IP
-                    </button>
-                    <button onclick="copyToClipboard('playbr.arc360hub.com:4832', 'Bedrock IP & Port')"
-                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl">
-                        Copy Bedrock IP & Port
-                    </button>
+                    <!-- Consolidated connect button -->
+                    <a href="#ip-details"
+                       class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
+                        Connect to ArkMC
+                    </a>
                     <a href="https://map.arc360hub.com" target="_blank" rel="noopener noreferrer"
                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
                         View Map
@@ -132,7 +145,7 @@
                     ArkMC Is a simple Minecraft Survival server, our server has a bunch of great members, and cool Plugins making your minecraft expereance even better. Its really simple though, just a minecraft survival server.
                 </p>
                 <p class="text-lg leading-relaxed text-blue-100">
-                    We do have some rules around here, ESPESALY No griefing! I have installed a plugin to combat this so please read up on the instructions on how to set that up, No lag machines, because this is being ran on a Not very powerful PC, It can handle normal gameplay and some advanced stuff, but dont overload it.. See the rest of the rules inside of the servers spawn.
+                    We do have some rules around here, ESPESALY No griefing! I have installed a plugin to combat this so please read up on the instructions on how to set that up, No lag machines, because this is being ran on a Not very powerful PC, It can handle normal gameplay and some advanced stuff, but dont overload it. See the rest of the rules inside of the servers spawn.
                 </p>
             </div>
         </section>
@@ -257,32 +270,31 @@
                         <li>Right-Click Another Block: Move to the diagonally opposite corner of the area you want to claim and right-click with the golden shovel again. This marks the second point, completing your claim.</li>
                         <li>Verify Your Claim: A message will appear confirming your claim and showing you the number of blocks claimed. You can also see the claim boundaries.</li>
                         <li>Expand or Resize (Optional): To expand your claim, simply right-click outside your current claim with the golden shovel. To resize, right-click inside.</li>
-                        <li>Trust Players (Optional): To allow friends to build in your claimed area, use the command `/trust [playername]`.</li>
-                        <li>Untrust Players (Optional): To remove a player's building permissions, use the command `/untrust [playername]`.</li>
+                        <li>Trust Players (Optional): To allow friends to build in your claimed area, use the command <span class="code-block">/trust [playername]</span>.</li>
+                        <li>Untrust Players (Optional): To remove a player's building permissions, use the command <span class="code-block">/untrust [playername]</span>.</li>
                     </ol>
                     <p class="text-lg leading-relaxed text-blue-100">
                         If you need more claimed blocks to claim a bigger area, ask me on the Discord Server.
                     </p>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://media.githubusercontent.com/media/arc360alt/testwebsite/main/tut.gif" alt="GIF showing griefing protection steps" class="w-full max-w-md h-auto rounded-lg shadow-2xl border-2 border-blue-600">
+                    <img src="https://media.githubusercontent.com/media/arc360alt/testwebsite/main/tut.gif" alt="GIF showing griefing protection steps" class="griefing-gif rounded-lg shadow-2xl border-2 border-blue-600">
                 </div>
             </div>
         </section>
 
         <section id="access" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-3xl bg-blue-800 p-8 rounded-xl shadow-xl border-4 border-blue-600">
-                <h2 class="text-4xl font-bold mb-8 text-blue-200">How to Get Access</h2>
+                <h2 class="text-4xl font-bold mb-8 text-blue-200">Need help?</h2>
                 <p class="text-lg leading-relaxed mb-6 text-blue-100">
-                    ArkMC No longer relies on a whitelist system due to me adding a non griefing plugin to the server. So anyone can join and play! If you have any issues whith the plugin or any other issues whiht the server, contact me on our discord!
+                    If you need any more help on ArkMC, or just want to chat with the community, you can join our Discord server. Me and a few of my friends are here to help! So if you have any issues whith the plugins or need more Claimed Blocks, ask us!
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                     <a href="https://discord.gg/TRMPdA8acF" target="_blank" rel="noopener noreferrer"
                        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out text-lg sm:text-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.244 3.036c-1.391-.914-2.891-1.636-4.473-2.146l-.504-.151-.013-.004c-1.127-.373-2.316-.566-3.535-.565-.001 0-.002 0-.003 0-.001 0-.002 0-.003 0-1.219-.001-2.408.192-3.535.565l-.013.004-.504.151c-1.582.51-3.082 1.232-4.473 2.146C.767 5.253 0 8.016 0 10.74c0 6.643 5.438 12.016 12.145 12.016 6.551 0 11.855-5.269 11.855-11.758 0-2.724-.767-5.487-2.756-7.704zm-4.321 4.544l-.794-.007c-.161-.001-.321.002-.482.008-.431.018-.853.078-1.261.178-.291.072-.569.172-.835.29-.462.203-.89.444-1.285.727-.261.186-.511.386-.749.595-.121.107-.243.213-.365.319l-.317.275c-.381.332-.718.665-.965.986-.188.243-.367.487-.533.722-.164.237-.315.467-.452.686-.142.23-.263.456-.356.671-.097.227-.156.452-.178.674-.022.222-.008.436.046.647.054.21.144.41.268.595.124.184.275.357.452.513.177.155.385.293.621.41.236.117.498.21.785.279.288.069.595.11.92.122.325.012.665.002 1.005-.028.67-.06 1.32-.196 1.942-.405.347-.116.685-.255 1.008-.415.323-.16.634-.337.925-.533.407-.278.784-.582 1.127-.912.285-.285.541-.588.766-.906.216-.3.402-.62.557-.962.14-.306.25-.631.327-.978.077-.346.113-.703.109-1.06-.004-.356-.046-.708-.124-1.05-.078-.343-.19-.67-.333-.974-.144-.305-.32-.589-.527-.852-.207-.263-.44-.5-.694-.71-.25-.213-.52-.408-.804-.582-.284-.175-.584-.326-.89-.452zm-6.208 4.296c-.636 0-1.151.492-1.151 1.099s.515 1.099 1.151 1.099c.636 0-1.151-.492 1.151-1.099s-.515-1.099-1.151-1.099zm4.721 0c-.636 0-1.151.492-1.151 1.099s.515 1.099 1.151 1.099c.636 0 1.151-.492 1.151-1.099s-.515-1.099-1.151-1.099z"/>
-                        </svg>
+                        <!-- Discord icon from PNG -->
+                        <img src="discord.png" alt="Discord Icon" class="w-6 h-6 mr-2">
                         Join Our Discord
                     </a>
                 </div>
@@ -437,7 +449,7 @@
 
         // Set intervals for refreshing data
         // Increased refresh rate for Minecraft status to 5 seconds
-        setInterval(fetchMinecraftStatus, 10000); // Refresh Minecraft status every 5 seconds
+        setInterval(fetchMinecraftStatus, 10000); // Refresh Minecraft status every 10 seconds
         setInterval(fetchServerMetrics, 30000);    // Refresh system metrics every 30 seconds
     </script>
 </body>
