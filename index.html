@@ -68,7 +68,6 @@
         body {
             padding-top: 0rem; /* Adjust based on banner and nav height */
         }
-        /* A
         /* Styling for code blocks in the griefing section */
         .code-block {
             background-color: #2a52a3; /* A slightly lighter blue for the background */
@@ -105,6 +104,7 @@
                 <a href="#server-commands" class="text-white hover:text-blue-300 transition duration-300 font-medium">Server Commands</a>
                 <a href="#screenshots" class="text-white hover:text-blue-300 transition duration-300 font-medium">Screenshots</a>
                 <a href="#server-stats" class="text-white hover:text-blue-300 transition duration-300 font-medium">Server Stats</a>
+                <a href="#gamemode-availability" class="text-white hover:text-blue-300 transition duration-300 font-medium">Gamemodes</a>
                 <a href="#ip-details" class="text-white hover:text-blue-300 transition duration-300 font-medium">Connect</a>
                 <a href="#griefing-protection" class="text-white hover:text-blue-300 transition duration-300 font-medium">Protection</a>
                 <a href="#access" class="text-white hover:text-blue-300 transition duration-300 font-medium">Access</a>
@@ -124,6 +124,7 @@
             <a href="#server-commands" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Server Commands</a>
             <a href="#screenshots" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Screenshots</a>
             <a href="#server-stats" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Server Stats</a>
+            <a href="#gamemode-availability" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Gamemodes</a>
             <a href="#ip-details" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Connect</a>
             <a href="#griefing-protection" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Protection</a>
             <a href="#access" class="block px-4 py-2 text-white hover:bg-blue-700 transition duration-300">Access</a>
@@ -252,6 +253,38 @@
             </div>
         </section>
 
+        <!-- New Gamemode Availability Section -->
+        <section id="gamemode-availability" class="py-16 px-4 text-center">
+            <div class="container mx-auto max-w-4xl bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
+                <h2 class="text-4xl font-bold mb-8 text-blue-200">Gamemode Availability</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- ArkMC Status -->
+                    <div class="bg-blue-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-100">ArkMC</h3>
+                        <p id="arkmcStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
+                    </div>
+                    <!-- Prisons Status -->
+                    <div class="bg-blue-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-100">Prisons</h3>
+                        <p id="prisonsStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
+                    </div>
+                    <!-- Skyblock Status -->
+                    <div class="bg-blue-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-100">Skyblock</h3>
+                        <p id="skyblockStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
+                    </div>
+                    <!-- Hub Status -->
+                    <div class="bg-blue-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-100">Hub</h3>
+                        <p id="hubStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
+                    </div>
+                </div>
+                <p class="text-sm text-blue-200 mt-6">
+                    Gamemode status is read from a JSON file. Please ensure the <code class="code-block">GAMEMODE_STATUS_API_URL</code> in the script is set to your JSON file's URL, and that the server hosting the JSON allows cross-origin requests.
+                </p>
+            </div>
+        </section>
+
         <section id="ip-details" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-4xl">
                 <h2 class="text-4xl font-bold mb-10 text-blue-200">Connect to ArkMC Now!</h2>
@@ -337,6 +370,7 @@
                 <a href="#server-commands" class="hover:text-blue-400 transition duration-300">Commands</a>
                 <a href="#screenshots" class="hover:text-blue-400 transition duration-300">Gallery</a>
                 <a href="#server-stats" class="hover:text-blue-400 transition duration-300">Server Stats</a>
+                <a href="#gamemode-availability" class="hover:text-blue-400 transition duration-300">Gamemodes</a>
                 <a href="#ip-details" class="hover:text-blue-400 transition duration-300">Connect</a>
                 <a href="#griefing-protection" class="hover:text-blue-400 transition duration-300">Protection</a>
                 <a href="#access" class="hover:text-blue-400 transition duration-300">Community</a>
@@ -388,15 +422,20 @@
 
         // --- Configuration ---
         // Your Minecraft Server IP or Domain (for player count)
-        const MINECRAFT_SERVER_IP = 'arkmc.minecraft.party'; // This is what you already have
+        const MINECRAFT_SERVER_IP = 'arkmc.minecraft.party:25565'; 
         // Max players for display (customize this based on your server's capacity)
         const MAX_PLAYERS = 20;
         
         // YOUR FLASK METRICS SERVER IP & PORT (for CPU, RAM, Temp)
-        // !! IMPORTANT: Replace this with your actual Cloudflare Tunnel URL or Raspberry Pi IP:Port for metrics !!
-        const METRICS_API_URL = 'https://stats.arc360hub.com/metrics/all'; // This is what you already have
+        const METRICS_API_URL = 'https://stats.arc360hub.com/metrics/all'; 
 
-        // Function to fetch and display Minecraft player count
+        // URL for the JSON file containing gamemode statuses
+        // IMPORTANT: Replace this with the actual URL to your hosted JSON file!
+        // Ensure the server hosting this JSON file allows cross-origin requests (CORS).
+        // If hosted on the same domain as your website, you can use a relative path like './servers.json'
+        const GAMEMODE_STATUS_API_URL = 'https://arkmc.arc360hub.com/servers.json'; 
+
+        // Function to fetch and display Minecraft player count (main server/proxy)
         async function fetchMinecraftStatus() {
             const playerCountElement = document.getElementById('player-count');
             if (!playerCountElement) {
@@ -408,13 +447,12 @@
             playerCountElement.className = 'text-3xl sm:text-4xl font-bold mb-8 text-blue-200'; // Neutral loading color
 
             try {
-                // *** CHANGED: Using api.mcstatus.io for more accurate/less cached status ***
+                // Using api.mcstatus.io for more accurate/less cached status
                 const response = await fetch(`https://api.mcstatus.io/v2/status/java/${MINECRAFT_SERVER_IP}`);
                 const data = await response.json();
 
                 if (response.ok && data.online) {
                     const onlinePlayers = data.players ? data.players.online : 0;
-                    // Note: api.mcstatus.io provides data.players.max, so we can use that if available
                     const maxPlayers = data.players ? data.players.max : MAX_PLAYERS; // Use API's max if available, else fallback
                     playerCountElement.innerHTML = `${onlinePlayers} / ${maxPlayers} Players Online`;
                     playerCountElement.className = 'text-3xl sm:text-4xl font-bold mb-8 text-green-400'; // Green for online
@@ -426,6 +464,73 @@
                 console.error("Error fetching Minecraft status:", error);
                 playerCountElement.innerHTML = `Failed to load status`;
                 playerCountElement.className = 'text-3xl sm:text-4xl font-bold mb-8 text-red-400'; // Red for error
+            }
+        }
+
+        // Function to fetch and display individual gamemode statuses from a JSON file
+        async function fetchGamemodeStatus() {
+            const gamemodeElements = {
+                arkmc: document.getElementById('arkmcStatus'),
+                prisons: document.getElementById('prisonsStatus'),
+                skyblock: document.getElementById('skyblockStatus'),
+                hub: document.getElementById('hubStatus')
+            };
+
+            // Set all to loading initially
+            for (const key in gamemodeElements) {
+                if (gamemodeElements[key]) {
+                    gamemodeElements[key].textContent = 'Loading...';
+                    gamemodeElements[key].classList.remove('text-green-400', 'text-red-400');
+                    gamemodeElements[key].classList.add('text-yellow-400');
+                }
+            }
+
+            if (!GAMEMODE_STATUS_API_URL) {
+                for (const key in gamemodeElements) {
+                    if (gamemodeElements[key]) {
+                        gamemodeElements[key].textContent = 'URL Missing';
+                        gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
+                        gamemodeElements[key].classList.add('text-red-400');
+                    }
+                }
+                console.warn("GAMEMODE_STATUS_API_URL is not set. Cannot fetch gamemode statuses.");
+                return;
+            }
+
+            try {
+                const response = await fetch(GAMEMODE_STATUS_API_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                for (const gamemode in data) {
+                    const statusElement = gamemodeElements[gamemode];
+                    if (statusElement) {
+                        if (data[gamemode] === 'on') {
+                            statusElement.textContent = 'Online';
+                            statusElement.classList.remove('text-yellow-400', 'text-red-400');
+                            statusElement.classList.add('text-green-400');
+                        } else if (data[gamemode] === 'off') {
+                            statusElement.textContent = 'Offline';
+                            statusElement.classList.remove('text-yellow-400', 'text-green-400');
+                            statusElement.classList.add('text-red-400');
+                        } else {
+                            statusElement.textContent = 'Unknown';
+                            statusElement.classList.remove('text-green-400', 'text-red-400');
+                            statusElement.classList.add('text-yellow-400');
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching gamemode status from JSON:", error);
+                for (const key in gamemodeElements) {
+                    if (gamemodeElements[key]) {
+                        gamemodeElements[key].textContent = 'Error';
+                        gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
+                        gamemodeElements[key].classList.add('text-red-400');
+                    }
+                }
             }
         }
 
@@ -465,13 +570,14 @@
 
         // Call functions when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            fetchMinecraftStatus(); // Initial call for Minecraft status
+            fetchMinecraftStatus(); // Initial call for main Minecraft status (proxy)
+            fetchGamemodeStatus();  // Initial call for gamemode statuses from JSON
             fetchServerMetrics();    // Initial call for system metrics
         });
 
         // Set intervals for refreshing data
-        // Increased refresh rate for Minecraft status to 5 seconds
-        setInterval(fetchMinecraftStatus, 10000); // Refresh Minecraft status every 10 seconds
+        setInterval(fetchMinecraftStatus, 10000); // Refresh main Minecraft status every 10 seconds
+        setInterval(fetchGamemodeStatus, 10000);  // Refresh gamemode statuses every 10 seconds
         setInterval(fetchServerMetrics, 30000);    // Refresh system metrics every 30 seconds
     </script>
 </body>
