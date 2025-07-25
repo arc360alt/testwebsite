@@ -502,7 +502,7 @@
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await response.json();
+                const data = await response.json(); // This line will throw the SyntaxError if the JSON is malformed
 
                 for (const gamemode in data) {
                     const statusElement = gamemodeElements[gamemode];
