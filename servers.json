@@ -1,4 +1,6 @@
-arkmc: on
-prisons: on
-skyblock: on
-hub: on
+{
+  "arkmc": "on",
+  "prisons": "on",
+  "skyblock": "on",
+  "hub": "on"
+}
