@@ -257,7 +257,7 @@
         <section id="gamemode-availability" class="py-16 px-4 text-center">
             <div class="container mx-auto max-w-4xl bg-blue-700 p-8 rounded-xl shadow-xl border-4 border-blue-600">
                 <h2 class="text-4xl font-bold mb-8 text-blue-200">Gamemode Availability</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- ArkMC Status -->
                     <div class="bg-blue-800 p-6 rounded-lg shadow-md">
                         <h3 class="text-2xl font-semibold mb-2 text-blue-100">Ark Network</h3>
@@ -277,6 +277,10 @@
                     <div class="bg-blue-800 p-6 rounded-lg shadow-md">
                         <h3 class="text-2xl font-semibold mb-2 text-blue-100">Hub</h3>
                         <p id="hubStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
+                    </div>
+                    <div class="bg-blue-800 p-6 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-blue-100">NSMP</h3>
+                    <p id="nsmpStatus" class="text-3xl font-extrabold text-yellow-400">Loading...</p>
                     </div>
                 </div>
                 <p class="text-sm text-blue-200 mt-6">
@@ -434,7 +438,7 @@
         // IMPORTANT: Replace this with the actual URL to your hosted JSON file!
         // Ensure the server hosting this JSON file allows cross-origin requests (CORS).
         // If hosted on the same domain as your website, you can use a relative path like './servers.json'
-        const GAMEMODE_STATUS_API_URL = 'https://stats.arc360hub.com/servers.json'; 
+        const GAMEMODE_STATUS_API_URL = 'https://mcstats.arc360hub.com/stats.json';
 
         // Function to fetch and display Minecraft player count (main server/proxy)
         async function fetchMinecraftStatus() {
@@ -469,71 +473,76 @@
         }
 
         // Function to fetch and display individual gamemode statuses from a JSON file
-        async function fetchGamemodeStatus() {
-            const gamemodeElements = {
-                arkmc: document.getElementById('arkmcStatus'),
-                prisons: document.getElementById('prisonsStatus'),
-                skyblock: document.getElementById('skyblockStatus'),
-                hub: document.getElementById('hubStatus')
-            };
+// Function to fetch and display individual gamemode statuses from the new API
+async function fetchGamemodeStatus() {
+    const gamemodeElements = {
+        ArkMC: document.getElementById('arkmcStatus'),
+        Prisons: document.getElementById('prisonsStatus'),
+        Skyblock: document.getElementById('skyblockStatus'),
+        Hub: document.getElementById('hubStatus'),
+        NostolgiaSMP: document.getElementById('nsmpStatus')
+    };
 
-            // Set all to loading initially
-            for (const key in gamemodeElements) {
-                if (gamemodeElements[key]) {
-                    gamemodeElements[key].textContent = 'Loading...';
-                    gamemodeElements[key].classList.remove('text-green-400', 'text-red-400');
-                    gamemodeElements[key].classList.add('text-yellow-400');
-                }
+    // Set all to loading initially
+    for (const key in gamemodeElements) {
+        if (gamemodeElements[key]) {
+            gamemodeElements[key].textContent = 'Loading...';
+            gamemodeElements[key].classList.remove('text-green-400', 'text-red-400');
+            gamemodeElements[key].classList.add('text-yellow-400');
+        }
+    }
+
+    if (!GAMEMODE_STATUS_API_URL) {
+        for (const key in gamemodeElements) {
+            if (gamemodeElements[key]) {
+                gamemodeElements[key].textContent = 'URL Missing';
+                gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
+                gamemodeElements[key].classList.add('text-red-400');
             }
+        }
+        console.warn("GAMEMODE_STATUS_API_URL is not set. Cannot fetch gamemode statuses.");
+        return;
+    }
 
-            if (!GAMEMODE_STATUS_API_URL) {
-                for (const key in gamemodeElements) {
-                    if (gamemodeElements[key]) {
-                        gamemodeElements[key].textContent = 'URL Missing';
-                        gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
-                        gamemodeElements[key].classList.add('text-red-400');
-                    }
-                }
-                console.warn("GAMEMODE_STATUS_API_URL is not set. Cannot fetch gamemode statuses.");
-                return;
-            }
+    try {
+        const response = await fetch(GAMEMODE_STATUS_API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
 
-            try {
-                const response = await fetch(GAMEMODE_STATUS_API_URL);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json(); // This line will throw the SyntaxError if the JSON is malformed
-
-                for (const gamemode in data) {
-                    const statusElement = gamemodeElements[gamemode];
-                    if (statusElement) {
-                        if (data[gamemode] === 'on') {
-                            statusElement.textContent = 'Online';
-                            statusElement.classList.remove('text-yellow-400', 'text-red-400');
-                            statusElement.classList.add('text-green-400');
-                        } else if (data[gamemode] === 'off') {
-                            statusElement.textContent = 'Offline';
-                            statusElement.classList.remove('text-yellow-400', 'text-green-400');
-                            statusElement.classList.add('text-red-400');
-                        } else {
-                            statusElement.textContent = 'Unknown';
-                            statusElement.classList.remove('text-green-400', 'text-red-400');
-                            statusElement.classList.add('text-yellow-400');
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error("Error fetching gamemode status from JSON:", error);
-                for (const key in gamemodeElements) {
-                    if (gamemodeElements[key]) {
-                        gamemodeElements[key].textContent = 'Error';
-                        gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
-                        gamemodeElements[key].classList.add('text-red-400');
-                    }
+        // Access the servers object from the new API structure
+        const servers = data.servers || {};
+        
+        for (const gamemode in servers) {
+            const statusElement = gamemodeElements[gamemode];
+            if (statusElement) {
+                if (servers[gamemode] === true) {
+                    statusElement.textContent = 'Online';
+                    statusElement.classList.remove('text-yellow-400', 'text-red-400');
+                    statusElement.classList.add('text-green-400');
+                } else if (servers[gamemode] === false) {
+                    statusElement.textContent = 'Offline';
+                    statusElement.classList.remove('text-yellow-400', 'text-green-400');
+                    statusElement.classList.add('text-red-400');
+                } else {
+                    statusElement.textContent = 'Unknown';
+                    statusElement.classList.remove('text-green-400', 'text-red-400');
+                    statusElement.classList.add('text-yellow-400');
                 }
             }
         }
+    } catch (error) {
+        console.error("Error fetching gamemode status from JSON:", error);
+        for (const key in gamemodeElements) {
+            if (gamemodeElements[key]) {
+                gamemodeElements[key].textContent = 'Error';
+                gamemodeElements[key].classList.remove('text-yellow-400', 'text-green-400');
+                gamemodeElements[key].classList.add('text-red-400');
+            }
+        }
+    }
+}
 
         // Function to fetch and display server stats (CPU, RAM, Temp, Hostname)
         async function fetchServerMetrics() {
