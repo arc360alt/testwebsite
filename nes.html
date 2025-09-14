@@ -59,7 +59,7 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 15px;
+            padding: 5px 15px;
             background-color: #212529;
             border-bottom: 4px solid #0084ff;
         }
@@ -124,7 +124,7 @@
         .hero h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 0px #ffffff;
+            text-shadow: 2px 2px 0px #9b9b9b;
         }
         
         .hero p {
@@ -385,6 +385,13 @@
             margin-left: -150px;
         }
         
+        .logo-image {
+        height: 50px; /* Reduced height */
+        width: auto;  /* Maintain aspect ratio */
+        vertical-align: middle;
+        margin-right: 5px; /* Slightly less margin for a smaller logo */
+        }
+
         /* Mobile responsiveness */
         @media (max-width: 768px) {
             .hero h1 {
@@ -432,7 +439,10 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="#hero" class="nav-brand">🎮 ARK NETWORK</a>
+        <a href="#hero" class="nav-brand">
+        <img src="logo.png" alt="ARK NETWORK Logo" class="logo-image">
+        ARK NETWORK
+        </a>
             <div class="nav-links">
                 <a href="#description">ABOUT</a>
                 <a href="#gamemode-availability">MODES</a>
