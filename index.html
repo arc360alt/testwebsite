@@ -26,12 +26,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fixed Warning Bar</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Warning Bar</title>
     <style>
         /* Custom styles for the Inter font and smooth scrolling */
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
-            padding-top: 7rem; /* Increased to account for warning bar + navbar */
+            padding-top: 0; /* No padding needed, handled by navbar positioning */
         }
         /* Custom scrollbar for a cleaner look */
         ::-webkit-scrollbar {
@@ -96,8 +102,13 @@
         
         /* If you have a navbar, add this class to it and adjust its top position */
         .navbar {
-            top: 2.5rem; /* Adjust based on warning bar height */
+            top: 2.5rem; /* Position directly below warning bar (warning bar height) */
             z-index: 40; /* Lower than warning bar */
+        }
+        
+        /* Add padding to main content to account for fixed elements */
+        main, section:first-of-type {
+            padding-top: 8rem; /* Total height of warning bar + navbar */
         }
     </style>
 </head>
