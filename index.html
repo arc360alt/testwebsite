@@ -20,11 +20,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Warning Bar</title>
     <style>
         /* Custom styles for the Inter font and smooth scrolling */
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+            padding-top: 7rem; /* Increased to account for warning bar + navbar */
         }
         /* Custom scrollbar for a cleaner look */
         ::-webkit-scrollbar {
@@ -65,9 +72,6 @@
             color: #60a5fa; /* Lighter blue for commands */
             font-weight: 600; /* Semi-bold */
         }
-        body {
-            padding-top: 0rem; /* Adjust based on banner and nav height */
-        }
         /* Styling for code blocks in the griefing section */
         .code-block {
             background-color: #2a52a3; /* A slightly lighter blue for the background */
@@ -84,11 +88,21 @@
             height: auto; /* Maintain aspect ratio */
             object-fit: contain; /* Ensure the entire content of the GIF is visible, scaled to fit */
         }
+        
+        /* Warning bar styling - highest z-index to stay on top */
+        .warning-bar {
+            z-index: 9999 !important; /* Higher than any navbar */
+        }
+        
+        /* If you have a navbar, add this class to it and adjust its top position */
+        .navbar {
+            top: 2.5rem; /* Adjust based on warning bar height */
+            z-index: 40; /* Lower than warning bar */
+        }
     </style>
 </head>
 <body class="bg-blue-900 text-white">
-
-    <div class="fixed top-0 left-0 w-full bg-red-700 text-white text-center py-2 z-50 shadow-lg">
+    <div class="warning-bar fixed top-0 left-0 w-full bg-red-700 text-white text-center py-2 shadow-lg">
         The Ark Network will be shut down soon, it is costing me too much money and there has been 0 players for 5 months. Read more somewhere below here. 12/1/25, (December first, 2025).
     </div>
 
